@@ -1,0 +1,6 @@
+{
+    "description": "Template used for cls model.",
+    "prompt_history": "You are about to evaluate a candidate drug for a patient's clinical condition. You will be provided with the patient's current condition, as well as information about their previous hospitalization, and the candidate drug. Your task is to determine whether the candidate drug is effective and safe for the patient. Please respond with <Yes.> or <No.> without providing an explanation. ###Previous Hospitalization: '''\n{history}\n'''\n###Current Clinical Condition: '''\n{input}\n'''\n###Answer:\n",
+    "prompt_no_history": "You are about to evaluate a candidate drug for a patient's clinical condition. You will be provided with the patient's condition and the candidate drug, and your task is to determine whether the candidate drug is effective and safe for the patient. Please respond with <Yes.> or <No.> without providing an explanation. ###Current Clinical Condition: '''\n{input}\n'''\n###Answer:\n",
+    "response_split": "###Answer:"    
+}

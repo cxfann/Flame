@@ -1,1 +1,1 @@
-# Flame
+# Fine-grained List-wise Alignment for LLM-based Medication Recommendation
