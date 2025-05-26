@@ -229,7 +229,3 @@ python src/evaluate_rethink_grpo.py --base_model_path Models/list_sft \
                                     --task remove
 python src/cal_metric.py --results_path evaluate_results/list_GRPO
 ```
-
-
-This repository is partially based on the [LAMO](https://github.com/zzhUSTC2016/LAMO) repository, you can find some additional details in the original repository.
-
