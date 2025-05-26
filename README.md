@@ -140,7 +140,7 @@ torchrun --nproc_per_node=X --master_port=XXX ./src/evaluate_ddp.py \
 - Output: `evaluate_results/cls/test/evaluation_result.csv`
 
 ### Stage 2: List-wise Policy ($\pi_{\text{list}}$)
-$\pi_{\text{list}}$ aims to **refine*** drug combinations by learning from $\pi_{\text{cls}}$’s mistakes via **add/remove actions**.
+$\pi_{\text{list}}$ aims to **refine** drug combinations by learning from $\pi_{\text{cls}}$’s mistakes via **add/remove actions**.
 
 #### 1. Generate $\pi_{\text{cls}}$ predictions on train set
 

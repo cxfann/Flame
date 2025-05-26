@@ -139,7 +139,6 @@ def finetune_rethink_grpo(
             pred_name_clean = pred_name.strip().lower().replace(" ", "").replace("-", "")
             matched = False
             for med_name, idx in med_name2idx.items():
-                # 将药物名称清洗后与模型输出进行比较
                 med_name_clean = med_name.lower().replace(" ", "").replace("-", "")
                 if pred_name_clean == med_name_clean:
                     pred_ids.append(idx)
