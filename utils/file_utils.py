@@ -31,15 +31,14 @@ def setup_logger(log_file, mode='w'):
     return logger
 
 
-def load_data(mode='train', file_name='data4LLM_v3.csv'):
+def load_data(mode='train', file_path='data/data_process/output/mimic-iii/data4LLM_with_note.csv'):
     '''
     Load EHR data and drug names
     '''
     # load EHR data
     # data_path = './data/'
 
-    # data4LLM_file = os.path.join(data_path, file_name)
-    data = pd.read_csv(file_name)
+    data = pd.read_csv(file_path)
 
     # split data into train, val, test
     split_point = int(len(data) * 2 / 3)
@@ -52,10 +51,10 @@ def load_data(mode='train', file_name='data4LLM_v3.csv'):
 
     # return data and drug names
     if mode == 'train':
-        # print(f'Train data size: {len(data_train)}\n')    # 9960
+        # print(f'Train data size: {len(data_train)}\n') 
         return data_train
     elif mode == 'val':
-        # print(f'Val data size: {len(data_val)}\n')     # 2490
+        # print(f'Val data size: {len(data_val)}\n') 
         return data_val
     elif mode == 'test':
         print(f'Test data size: {len(data_test)}\n')

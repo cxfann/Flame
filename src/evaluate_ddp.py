@@ -9,6 +9,7 @@ import torch
 import transformers
 import dill
 import csv
+import pandas as pd
 from datasets import load_dataset
 
 from peft import (
@@ -37,7 +38,7 @@ def evaluate(
     cutoff_len = 5120,
     train_on_inputs = 0,
     med_num = 151,
-    ddi_path = "./data/ddi_A_final.pkl",
+    ddi_path = "data/data_process/output/mimic-iii/ddi_A_final.pkl",
     save_path = None,
 ):
     log_path = os.path.join(os.path.dirname(model_path), 'test.log')
@@ -332,6 +333,55 @@ def evaluate(
     
     logger.info(f'finished evaluation')
     logger.info(result)
+
+    if save_path:
+        ### generate visit_error.csv and drug_error.csv
+        each_med_miss = [0 for _ in range(151)]
+        each_med_extra = [0 for _ in range(151)]
+
+        df = pd.read_csv(result_path)
+        for i in range(len(df)):
+            pred = eval(df["preds"][i])
+            gt = eval(df["labels"][i])
+            for med_idx in range(151):
+                if med_idx not in pred and med_idx in gt:
+                    each_med_miss[med_idx] += 1
+                if med_idx in pred and med_idx not in gt:
+                    each_med_extra[med_idx] += 1
+
+        each_med_err = [each_med_miss[i] + each_med_extra[i] for i in range(151)]
+
+        drug_error_analysis_path = os.path.join(save_path, "drug_error.csv")
+
+        with open(drug_error_analysis_path, "w") as f:
+            writer = csv.writer(f)
+            writer.writerow(["Med", "Miss", "Extra", "Err"])
+            for i in range(151):
+                writer.writerow([i, each_med_miss[i], each_med_extra[i], each_med_err[i]])
+
+        visit_num = len(df)
+
+        each_visit_miss = [0 for _ in range(visit_num)]
+        each_visit_extra = [0 for _ in range(visit_num)]
+        gt_len = [0 for _ in range(visit_num)]
+
+        for i in range(visit_num):
+            pred = eval(df["preds"][i])
+            gt = eval(df["labels"][i])
+            for med_idx in range(151):
+                if med_idx not in pred and med_idx in gt:
+                    each_visit_miss[i] += 1
+                if med_idx in pred and med_idx not in gt:
+                    each_visit_extra[i] += 1
+            gt_len[i] = len(gt)
+
+        visit_error_analysis_path = os.path.join(save_path, "visit_error.csv")
+
+        with open(visit_error_analysis_path, "w") as f:
+            writer = csv.writer(f)
+            writer.writerow(["Visit", "Miss", "Extra", "GT Len"])
+            for i in range(visit_num):
+                writer.writerow([i, each_visit_miss[i], each_visit_extra[i], gt_len[i]])
 
 if __name__ == '__main__':
     fire.Fire(evaluate)

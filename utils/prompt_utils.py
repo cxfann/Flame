@@ -12,7 +12,7 @@ class Prompter(object):
         self.use_code = use_code
         if not template_name:
             # Enforce the default here, so the constructor can be called with '' and will not break.
-            template_name = "llama-2"
+            template_name = "cls"
         file_name = osp.join("./utils", "templates", f"{template_name}.json")
         if not osp.exists(file_name):
             raise ValueError(f"Can't read {file_name}")

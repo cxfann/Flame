@@ -1,0 +1,14 @@
+data/cls
+data/list_grpo
+data/list_sft
+
+data/saved_embedding/*.pkl
+data/data_process/output
+data/data_process/input/drugbank_drugs_info.csv
+
+data/data_process/input/mimic-iii/ADMISSIONS.csv
+data/data_process/input/mimic-iii/DIAGNOSES_ICD.csv
+data/data_process/input/mimic-iii/PROCEDURES_ICD.csv
+data/data_process/input/mimic-iii/PATIENTS.csv
+data/data_process/input/mimic-iii/PRESCRIPTIONS.csv
+data/data_process/input/mimic-iii/NOTEEVENTS.csv

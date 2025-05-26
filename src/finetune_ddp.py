@@ -38,7 +38,7 @@ def finetune_ddp(
     output_dir = None,
     load_in_8bit = False,
     eval_epochs = 32,
-    ddi_path = "./data/ddi_A_final.pkl",
+    ddi_path = "data/data_process/output/mimic-iii/ddi_A_final.pkl",
     # embedding hyperparams
     use_pat_embed = True,
     use_dias_embed = True,

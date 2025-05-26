@@ -51,9 +51,13 @@ def cal_metric(pred, gt):
 
     return jacard, precision, recall, f1, ddi, ddi_gt, len(pred), len(gt)
 
-def get_metric(results_path, ckpt):
-    add_path = os.path.join(results_path, f'add-{ckpt}.csv')
-    remove_path = os.path.join(results_path, f'remove-{ckpt}.csv')
+def get_metric(results_path, ckpt=None):
+    if ckpt is None:
+        add_path = os.path.join(results_path, 'add.csv')
+        remove_path = os.path.join(results_path, 'remove.csv')
+    else:
+        add_path = os.path.join(results_path, f'add-{ckpt}.csv')
+        remove_path = os.path.join(results_path, f'remove-{ckpt}.csv')
 
     if not os.path.exists(remove_path):
 

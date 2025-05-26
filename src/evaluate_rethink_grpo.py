@@ -32,10 +32,10 @@ ddi_metric = dill.load(open(ddi_path, "rb"))
 
 
 def evaluate_pretrain(
-    base_model_path: str = './Models/sft_rethink',
+    base_model_path: str = 'Models/list_sft',
     lora_path: str = None,
     data_path: str = None,
-    med_name2idx_path: str = "./data/med_name2idx.json",
+    med_name2idx_path: str = "data/data_process/output/mimic-iii/med_name2idx.json",
     evaluate_result_path: str = None,
     task: str = None,
 ):
